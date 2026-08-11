@@ -33,23 +33,51 @@ export default function Profile() {
   }
  
   return (
-    <Box>
-      <Paper sx={{ mx: 'auto', p: 4, borderRadius: 3, mb: 4 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Avatar src={user.image} sx={{ width: 64, height: 64 }} />
-          <Box>
-            <Typography variant="h5">
+    <Box sx={{ px: { xs: 2, sm: 3, md: 0 }, maxWidth: 900, mx: 'auto' }}>
+      <Paper
+        sx={{
+          mx: 'auto',
+          p: { xs: 2, sm: 3, md: 4 },
+          borderRadius: 3,
+          mb: { xs: 3, md: 4 },
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: { xs: 'flex-start', sm: 'center' },
+            gap: 2,
+            textAlign: { xs: 'center', sm: 'left' },
+            width: '100%',
+          }}
+        >
+          <Avatar
+            src={user.image}
+            sx={{
+              width: { xs: 56, sm: 64 },
+              height: { xs: 56, sm: 64 },
+              mx: { xs: 'auto', sm: 0 },
+            }}
+          />
+          <Box sx={{ minWidth: 0, width: '100%', textAlign: { xs: 'center', sm: 'left' } }}>
+            <Typography variant="h5" sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' }, wordBreak: 'break-word' }}>
               {user.username}&apos;s Profile
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" sx={{ wordBreak: 'break-word' }}>
               {user.firstName} {user.lastName}
             </Typography>
-            <Typography variant="body1">Email: {user.email}</Typography>
+            <Typography variant="body1" sx={{ wordBreak: 'break-word' }}>
+              Email: {user.email}
+            </Typography>
           </Box>
         </Box>
       </Paper>
  
-      <Typography variant="h5" sx={{ mb: 2, color: 'primary.dark' }}>
+      <Typography
+        variant="h5"
+        sx={{ mb: 2, color: 'primary.dark', fontSize: { xs: '1.25rem', sm: '1.5rem' } }}
+      >
         Your Recipes
       </Typography>
  
@@ -70,7 +98,14 @@ export default function Profile() {
       )}
  
       {!recipesLoading && !recipesError && userRecipes.length > 0 && (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: { xs: 'center', sm: 'flex-start' },
+            gap: { xs: 2, sm: 3, md: 4 },
+          }}
+        >
           {userRecipes.map(item => (
             <RecipeCard key={item.id} data={item} />
           ))}
@@ -79,4 +114,3 @@ export default function Profile() {
     </Box>
   );
 }
- 

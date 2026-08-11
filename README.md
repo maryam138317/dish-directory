@@ -34,3 +34,83 @@ A recipe browsing web app built with **Next.js**, **TypeScript**, and **Material
 ---
  
 ## 📁 Project Structure (high level)
+.
+├── app/                     # Next.js app router pages
+│   ├── page.tsx             # Home page
+│   ├── recipes/             # Recipes list (search + filter)
+│   │   └── [id]/             # Recipe details page
+│   ├── add-recipe/          # Add recipe form page
+│   ├── login/               # Login page
+│   ├── profile/             # Protected: user info + user's own recipes
+│   └── saved/                # Protected: saved/bookmarked recipes
+├── components/               # Reusable UI components (forms, cards, etc.)
+├── Schema/                   # Yup validation schemas
+├── services/                  # API calls / data-fetching hooks (recipes, auth)
+└── ...
+*(Adjust the tree above to match your actual folder names if they differ.)*
+ 
+---
+ 
+## 🚀 Getting Started
+ 
+### Prerequisites
+ 
+- [Node.js](https://nodejs.org/) (v18 or later recommended)
+- npm / yarn / pnpm
+### Installation
+ 
+```bash
+# Clone the repository
+git clone https://github.com/maryam138317/dish-directory.git
+cd <dish-directory>
+ 
+# Install dependencies
+npm install
+```
+ 
+### Running the Development Server
+ 
+```bash
+npm run dev
+```
+ 
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+ 
+### Build for Production
+ 
+```bash
+npm run build
+npm run start
+```
+ 
+---
+ 
+## 🔐 Authentication
+ 
+This project uses DummyJSON's authentication endpoints for login. You can use one of DummyJSON's test users to log in — see their [Users API docs](https://dummyjson.com/docs/auth) for sample credentials (e.g. username `emilys` / password `emilyspass`).
+ 
+Once logged in, you'll be able to access:
+- **Profile** — your account details and recipes you've created
+- **Saved** — recipes you've bookmarked, tied to your account and stored in your browser's local storage
+Logging out clears access to these protected pages until you log in again. The saved recipe IDs themselves stay in local storage under that user's account, so they'll reappear next time you log back in on the same browser/device.
+ 
+---
+ 
+## ⚠️ Known Limitations
+ 
+- **No real database** — this app uses DummyJSON as a mock API. Recipes you add via the "Add Recipe" form are sent to the API and DummyJSON will respond as if it succeeded, but the data is **not actually saved** on their servers or anywhere else.
+- **Saved recipes are stored locally, not server-side** — saved recipe IDs are persisted in the browser's `localStorage`, keyed per logged-in user, so they survive page refreshes and browser restarts on the same device. They are **not synced to a real backend or database**, so:
+  - Saved recipes won't appear if you log in from a different browser or device.
+  - Clearing browser storage/site data will remove all saved recipes.
+- Since recipe data itself isn't persisted, recipes you add won't be visible in a new session or to other users.
+---
+ 
+## 📚 Data Source
+ 
+All recipe data comes from the [DummyJSON Recipes API](https://dummyjson.com/docs/recipes), a free fake REST API for testing and prototyping.
+ 
+---
+ 
+## 📄 License
+ 
+This project is for learning/demo purposes.
